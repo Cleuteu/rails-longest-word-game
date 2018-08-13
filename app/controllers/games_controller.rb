@@ -3,7 +3,7 @@ require 'json'
 
 class GamesController < ApplicationController
   def new
-    @letters = [*('A'..'Z')].sample(8)
+    @letters = [*('A'..'Z')].sample(10)
   end
 
   def score
@@ -18,7 +18,7 @@ class GamesController < ApplicationController
       @score = 0
     else
       @result = "Well done buddy!"
-      @score = @answer.chars.count
+      @score = @answer.chars.count * 10 / (Time.now - Time.parse(params[:start_time])).round(2)
     end
   end
 
